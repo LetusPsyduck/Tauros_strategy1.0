@@ -1,0 +1,14 @@
+gplearn==0.4.2
+joblib==1.2.0
+numba==0.50.1
+numpy==1.20.0
+pandas==1.4.2
+pytdx==1.72
+scikit-learn==1.2.2
+scipy==1.5.0
+#  need to be installed by local file. pip install
+# pip install .\dependent_packages\TA_Lib-0.4.24-cp38-cp38-win_amd64.whl
+Ta-lib==0.4.24
+
+sqlalchemy~=2.0.25
+tqsdk~=3.4.10

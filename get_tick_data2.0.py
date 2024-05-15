@@ -2,6 +2,11 @@ import pandas as pd
 from datetime import datetime
 from tqsdk import TqApi, TqAuth
 
+import sys
+# 添加 某.py 所在的文件夹路径到 sys.path
+sys.path.append('D:/github/Tauros_strategy1.0/temp/')
+
+
 import kuaiqi_account as my_account
 # 创建API实例,传入自己的快期账户
 account_name = my_account.kuaiqi_account_name
@@ -32,9 +37,9 @@ fields = [
 df = pd.DataFrame(columns=fields)
 
 # 首次写入 DataFrame，包括头部
-csv_file = contract_id + '_data.csv'
+current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+csv_file = f"{contract_id}_{current_time}_data.csv"
 df.to_csv(csv_file, mode='w', header=True, index=False)
-
 
 try:
     while True:
@@ -48,7 +53,7 @@ try:
             
             # 将新数据追加到 DataFrame
             df = df.append(new_data, ignore_index=True)
-            
+            print(datetime.now())
             # 追加数据到 CSV 文件，不包括头部信息（header=False）
             df.to_csv(csv_file, mode='a', header=False, index=False)
             df.drop(df.index, inplace=True)  # 清空 DataFrame 以节省内存
